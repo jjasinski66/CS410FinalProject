@@ -36,3 +36,5 @@
       - note: The script will also display the percentage of songs that failed to get lyrics from any of the three sites.
       
   - Future iterations of this scraper can merge lyrics from multiple sites for a more consistent data set.
+  
+  - Included in this repo is the set from 1960 to 2016
