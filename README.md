@@ -17,10 +17,10 @@
     
   - Part 2: Use the Artist and Song information to lookup the song from one of three open websites.
     - note: I wanted to use this method for two reasons.
-      - The Lack of reqquired Hash key for any other API's makes this more user friendly and anonymous
-      - Open websites make the dataset easily reteievable by anyone.
+      - The Lack of required Hash key or login for any other API's makes this more user friendly and anonymous
+      - Open websites make the dataset easily retrievable by anyone.
       - The XML used by these websites is consistent, and the tags necessary to find the lyrics are simpler to program.
-    - The three websites used, metorlyics.com, songlyrics.com, lyricsmode.com have a huge repository of song lyrics. Bwtween the three of them, the chance of finding a song's lyrics is greatly increased.
+    - The three websites used, metorlyics.com, songlyrics.com, lyricsmode.com have a huge repository of song lyrics. Between the three of them, the chance of finding a song's lyrics is greatly increased.
     - The script then loops over the data frame using the artist and song title to create a suspected url of the song in question.
     - The script they tries to retrieve the lyrics from a site, if it fails, it goes onto the next site, and so on.
     - Once a lyric is found, the lyrics are added to the data frame.
