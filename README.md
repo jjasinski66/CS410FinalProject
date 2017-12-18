@@ -6,6 +6,8 @@
   - The script takes two command line arguments 
     - beginning, The First year to start searching
     - ending,     The last year to search
+  - This script requires R and utilizes the libraries (RCurl, XML, stringer, optparse)
+  - Example command: `Rscript songscrape2.R --beginning=1984 --ending=1984`
     
 ## The Script acts in three different parts.
 
