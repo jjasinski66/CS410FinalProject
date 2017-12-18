@@ -1,6 +1,8 @@
 # CS410FinalProject
 # songscrape2.R
 
+Documentation writing for project linked: https://github.com/jjasinski66/CS410FinalProject/blob/master/LYRICS%20DATABASE%20TOOL%20FOR%20EXPLORATION%20AND%20DISCOVERY.docx
+
 ## This script will automatically get the Billboard Top 100 for any year or sequence of years the user specifies.
 
   - The script takes two command line arguments 
