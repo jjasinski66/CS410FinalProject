@@ -3,6 +3,9 @@ library(XML)
 library(stringr)
 library(optparse)
 
+## Command line options to specify the beginning and end dates. Default is 1960 to 2016
+## EXAMPLE: Rscript songscrape2.R --beginning=1984 --ending=1984
+
 option_list = list(
   make_option(c("-b", "--beginning"), type="numeric", default=1960, 
               help="Starting Year for the Search", metavar="numeric"),
@@ -16,7 +19,7 @@ opt = parse_args(opt_parser);
 firstYear <- opt$beginning
 lastYear <- opt$ending
 
-################### GET SONG NAMES FROM WIKIPEDIA ###################
+################### GET BillBoard Top 100 FROM WIKIPEDIA ###################
 #### source: wikipedia.org
 
 allSongs <- data.frame() 
@@ -35,7 +38,7 @@ for (i in firstYear:lastYear) {
 colnames(allSongs) <- c("Rank", "Song", "Artist", "Year")
 lyricfail <- "We do not have the lyrics for"
 
-## prepare song and artist strings for website format
+## prepare song and artist strings for website format Each of the three used sites have different web formatting
 allSongs$Song <- gsub('\\"', "", allSongs$Song)
 allSongs$Song <- tolower(gsub("[^[:alnum:] ]", "", allSongs$Song))
 allSongs$Song <- gsub("\\'", "", iconv(allSongs$Song, to='ASCII//TRANSLIT')) # convert single quotes to ASCII
@@ -52,7 +55,7 @@ allSongs$Source <- ""
 ### source: multiple. 1=metorlyics.com, 2=songlyrics.com, 3=lyricsmode.com
 for (s in 1:length(allSongs$Song))  {
      
-     lyrics <- "Not set yet."
+     lyrics <- "not set yet."
      
      # clean up the artist field to fit in the URL
      artist <- strsplit(allSongs$Artist[s], " featuring | feat | feat. | with | duet | and ")
@@ -75,7 +78,7 @@ for (s in 1:length(allSongs$Song))  {
      metroClassTag <- "//p[@class='verse']"
 
      for (b in 1:length(URLs)) {
-          allSongs$Lyrics[s] <- "Not set yet."
+          allSongs$Lyrics[s] <- "not set yet."
           
           results <- 15 # use numeric value for success flag
           
@@ -114,11 +117,15 @@ for (s in 1:length(allSongs$Song))  {
 # clean up the lyrics to alpha and lowercase
 allSongs$Lyrics <- gsub("\\\n|\\\t"," ",allSongs$Lyrics)
 allSongs$Lyrics <- tolower(gsub("[^[:alnum:] ]", "", allSongs$Lyrics))
-missing <- round(length(allSongs[allSongs$Lyrics=="not set yet", 1])/length(allSongs[,1]), 4)*100
 
 # convert failed lyrics and "Instrumental Songs" to "NA"
 allSongs$Lyrics <- gsub("not set yet", "NA", allSongs$Lyrics)
 allSongs$Lyrics <- gsub("we are not in a position to display these lyrics due to licensing restrictions sorry for the inconvenience", "NA", allSongs$Lyrics)
+
+## Percentage of song's without Lyrics
+missing <- round(length(allSongs[allSongs$Lyrics=="Not set yet", 1])/length(allSongs[,1]), 4)*100
+missing
+
 allSongs$Lyrics <- gsub("instrumental", "NA", allSongs$Lyrics)
 
 write.csv(allSongs, paste0("lyrics_", firstYear,"-", lastYear, ".csv"), row.names=FALSE, quote=FALSE)
