@@ -1,4 +1,8 @@
-# CS410FinalProject
+# CS410FinalProject TEAM 16
+
+# PLEASE READ LYRICS DATABASE TOOL FOR EXPLORATION AND DISCOVERY.pdf For full write up of Project
+
+
 # songscrape2.R
 
 Documentation writing for project linked below:
