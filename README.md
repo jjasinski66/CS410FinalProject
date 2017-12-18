@@ -41,4 +41,4 @@ https://github.com/jjasinski66/CS410FinalProject/blob/master/LYRICS%20DATABASE%2
       
   - Future iterations of this scraper can merge lyrics from multiple sites for a more consistent data set.
   
-  - Included in this repo is the set from 1960 to 2016
+  - Included in this repo is the set from 1965 to 2017
